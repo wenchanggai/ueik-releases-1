@@ -1,0 +1,13 @@
+[
+  {
+    "id": "calendar-widget",
+    "name": "社区日历插件 (Calendar Widget)",
+    "version": "1.0.0",
+    "minAppVersion": "1.0.0",
+    "description": "由社区开发的精美日历挂件，自动在状态栏显示当前日期。这是一个真正的通过单文件热重载注入的第三方插件。",
+    "author": "GaiOS Community",
+    "authorUrl": "https://github.com/ueikcom",
+    "isDesktopOnly": false,
+    "codeUrl": "https://cdn.jsdelivr.net/gh/ueikcom/ueik-releases@main/plugins/calendar-widget/main.js"
+  }
+]
