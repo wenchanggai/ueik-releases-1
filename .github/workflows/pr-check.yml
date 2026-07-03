@@ -1,0 +1,31 @@
+name: Validate Plugin PR
+
+on:
+  pull_request:
+    paths:
+      - 'community-plugins.json'
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON syntax
+        run: |
+          jq empty community-plugins.json
+          if [ $? -ne 0 ]; then
+            echo "::error::JSON syntax is invalid!"
+            exit 1
+          fi
+
+      - name: Validate Required Fields
+        run: |
+          jq -e '
+            all(.[];
+              (.id | type) == "string" and 
+              (.name | type) == "string" and 
+              (.author | type) == "string" and
+              (.codeUrl | type) == "string"
+            )
+          ' community-plugins.json > /dev/null || { echo "::error::Missing required fields in some plugins!"; exit 1; }

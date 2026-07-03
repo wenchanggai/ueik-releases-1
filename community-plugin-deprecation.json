@@ -1,0 +1,6 @@
+{
+  "example-deprecated-plugin": {
+    "version": "1.0.0",
+    "reason": "This plugin has been deprecated and its features have been merged into the core."
+  }
+}

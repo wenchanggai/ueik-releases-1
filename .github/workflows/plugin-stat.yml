@@ -1,0 +1,26 @@
+name: Update Plugin Stats
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # 每天凌晨2点运行
+  workflow_dispatch:
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Dummy Stats (Example)
+        run: |
+          # 真实场景中，这里可以用 Node.js 脚本去抓取 Github API 获取各个插件仓库的 stars 和 downloads
+          echo "{ \"lastUpdated\": \"$(date)\", \"totalPlugins\": $(jq 'length' community-plugins.json) }" > community-plugin-stats.json
+
+      - name: Commit Stats
+        run: |
+          git config --local user.name 'GaiOS Bot'
+          git config --local user.email 'bot@ueik.com'
+          git add community-plugin-stats.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update plugin stats" && git push)

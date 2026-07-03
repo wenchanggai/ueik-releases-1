@@ -1,0 +1,7 @@
+[
+  {
+    "id": "example-removed-plugin",
+    "name": "Example Removed Plugin",
+    "reason": "This plugin was removed due to security concerns or because it is no longer maintained."
+  }
+]
